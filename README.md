@@ -1,40 +1,79 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Next.JS 너는 누구냐!
 
-## Getting Started
+해당 프로젝트에서는 next.js 가 무엇인지?
+왜 사용해야 하는지 
+어떻게 사용되는 것인지를 공부해 보는 프로젝트 이다!
 
-First, run the development server:
+### 1. Next.js 가 뭐고 왜쓰는데?
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Next.js는 리액트를 기반으로 한 프레임워크 이다. 
+리엑트로 개발된 프로젝트는 CSR 방식으로 동작을 하게 되는데,
+CSR 방식은 2가지의 문제점이 있다. 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. 구글 검색 노출이 어렵다
+2. 첫 페이지 로딩속도가 느리다
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+문제는 이 두가지가 사이트 수입성에 아주 악영향을 끼친다
+사이트를 왜 만드는가? 돈 벌려고 만드는 거 아닌가
+그런데 React로 만들면 돈이 줄줄 세어 나간다
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+하지만 Sever-Side Rendering은 html웹 페이지를 서버에서
+미리 다 만들어서 보내주는 개념이기 때문에 유저에게 자바스크립트를
+많이 보낼 필요가 없어서 조금 더 가볍고 구글 검색 노출도 잘 되는 편이다
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+심지어 Nextjs에선 SSR을 하고 싶다? 그러면 그것도 선택적으로 가능하기 때문에 안 쓸 이유가 없다
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+### 2. CSR vs SSR
 
-To learn more about Next.js, take a look at the following resources:
+### 3. 라이브러리 VS 프레임워크
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+라이브러리와 프레임워크의 주요 차이점은 "Inversion of Control"(통제의 역전)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+프레임워크는 내가 코드를 적절하게 적기만 한다면 프레임워크가 알아서 동작을 해준다. (프레임 워크의 규칙을 따라야함.)
+라이브러리는 내가 필요할때 불러와서 필요한 부분에 적용시킨다. 
 
-## Deploy on Vercel
+라이브러리
+사용자가 파일 이름이나 구조 등을 정하고, 모든 결정을 내림
+프레임워크
+파일 이름이나 구조 등을 정해진 규칙에 따라 만들고 따름
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 4. Next.js 의 장점
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- 파일과 폴더만 만들면 html 페이지를 생성해 줄 수 있다. 
+- 서버 기능을 만들듯이 DB 연결할 수 있고, API를 만들 수 있다. 라이브러리를 사용하면 회원 인증도 쉽다. 
+- CSR 도 자유롭게 할 수 있다. 
+- 서버 데이터 캐싱도 쉽다.
+- 폰트/이미지 최적화도 가능하다
+
+### 5. Next.js 의 단점
+
+- 폴더 기반 라우팅을 사용하기 때문에 예약 파일이 많아지고 파일이 많아지면 관리가 힘들다.
+- 라우팅 방식이 CSR 방식보다 느리다.
+- 클라이언트 컴포넌트와 서버 컴포넌트를 구분해서 짜야하는 귀찮음이 있다. 
+- 
+
+
+### 6. React vs Next.js
+
+#### SSR 및 정적 사이트 생성
+React
+클라이언트 단에서 실행되며 초기 로딩 시에 HTML 과 JavaScript 를 받아와 동적으로 렌더링 한다. 
+Next.js 
+SSR 과 정적 사이트 생성을 지원하며, 초기 로드 시에 서버에서 HTML 을 생성한 후 완성된 HTML 클라이언트에 전달한다. 
+
+#### 라우팅
+React
+라우팅을 위해서 React Router 등 별도의 라이브러리를 사용해야 한다. 
+Next.js
+라우팅을 위한 별도의 라이브러리가 필요 없고, 페이지 구조를 폴더와 파일로 표현할 수 있다. 
+
+#### 데이터 미리 가져오기
+React
+데이터를 가져오기 위해서는 별도의 라이브러리를 사용해야 한다.
+Next.js
+getInitialProps 를 사용하여 데이터를 가져올 수 있다.
+
+
+
+
