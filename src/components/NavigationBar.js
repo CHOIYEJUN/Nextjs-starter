@@ -1,47 +1,49 @@
 import Link from "next/link";
 import {useRouter} from "next/router";
-import styles from "./NavigationBar.module.css";
 
 export default function NavigationBar() {
     const router = useRouter();
 
     return(
         <nav>
-            {/*a 태그 사용하면 전체 페이지를 새로고침 하게 되서 사용하지 않음*/}
-
-           {/* <Link className={router.pathname === "/" ? styles.active : ""} href={'/'}>
+            <img src="/vercel.svg" />
+            <div>
+                <Link className={router.pathname === "/" ? "active" : ""} href="/">
                     Home
-            </Link>
-            <Link className={router.pathname === "/about" ? styles.active : ""} href={'/about'}>
+                </Link>
+                <Link className={router.pathname === "/about" ? "active" : ""} href="/about">
                     About
-            </Link>*/}
+                </Link>
+            </div>
 
-            <Link className={router.pathname === "/" ? "active" : ""} href={'/'}>
-                Home
-            </Link>
-            <Link className={router.pathname === "/about" ? "active" : ""} href={'/about'}>
-                About
-            </Link>
-
-            <style jsx global >{`
-
-              nav {
-                display : flex;
-                justify-content : space-between;
-                align-items : center;
-                padding : 0 1rem;
-                height : 5rem;
-                background-color : #fff;
-                border-bottom : 1px solid #e2e2e2;
-                width: 20%;
-
-              }
-
-              .active {
-                color : #337ab7;
-              }
-              
-            `}</style>
+            <style jsx>{`
+                nav {
+                  display: flex;
+                  gap: 10px;
+                  flex-direction: column;
+                  align-items: center;
+                  padding-top: 20px;
+                  padding-bottom: 10px;
+                  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+                    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+                }
+                img {
+                  max-width: 100px;
+                  margin-bottom: 5px;
+                }
+                nav a {
+                  font-weight: 600;
+                  font-size: 18px;
+                }
+                .active {
+                  color: tomato;
+                }
+                nav div {
+                  display: flex;
+                  gap: 10px;
+                }
+              `}
+            </style>
         </nav>
     )
 }

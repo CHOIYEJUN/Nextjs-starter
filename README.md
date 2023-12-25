@@ -1,3 +1,60 @@
+
+#  Next.js 로 영화 모바일 웹 서비스 만들기
+
+### 1. 프로젝트 소개
+next.js 를 사용해서 만든 간단 영화앱 (header SEO 까지 알뜰하게 적용한...)
+![](https://velog.velcdn.com/images/dpwns108/post/85837ccf-fd0a-469c-8c77-cad164d7ae8f/image.png)
+![](https://velog.velcdn.com/images/dpwns108/post/a14dfa00-9f54-4b26-ba34-c732c2ece69a/image.png)
+
+
+### 2. 배운점
+
+#### 1. page 폴더 구조 만으로 라우팅이 가능하다.
+
+
+예를 들어 movies 폴더 안에 [...params].js 파일을 만들면
+movies/1, movies/2, movies/3 등의 페이지를 만들 수 있다.
+이것이 Dynamic 라우팅 !_!
+
+#### 2. getServerSideProps
+getServerSideProps 는 서버에서만 실행되는 함수이다.
+서버에서 실행되기 때문에 서버에서만 접근 가능한 데이터를 가져올 수 있다.
+
+````javascript
+//nextConfig.js 
+// /api/movies" 로 접근하면 "https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}" 로 접근하게 된다.
+async rewrites() {
+    return [
+        {
+            source : "/api/movies",
+            destination : `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`,
+
+        }
+    ]
+
+},
+
+//index.js
+export async function getServerSideProps() {
+    const { results } = await (await fetch('http://localhost:3000/api/movies')).json();
+    return{
+        props : {
+            results,
+        }
+    }
+
+
+}
+````
+
+#### 3. pre-rendering
+pre-rendering 은 미리 페이지를 만들어 놓는 것이다.
+next.js 에서는 미리 초기상태의 html 을 렌더링 해놓는다. 
+
+
+
+
+
 ## Next.JS 너는 누구냐!
 
 해당 프로젝트에서는 next.js 가 무엇인지?
@@ -24,9 +81,7 @@ CSR 방식은 2가지의 문제점이 있다.
 심지어 Nextjs에선 SSR을 하고 싶다? 그러면 그것도 선택적으로 가능하기 때문에 안 쓸 이유가 없다
 
 
-### 2. CSR vs SSR
-
-### 3. 라이브러리 VS 프레임워크
+### 2. 라이브러리 VS 프레임워크
 
 라이브러리와 프레임워크의 주요 차이점은 "Inversion of Control"(통제의 역전)
 
@@ -38,7 +93,7 @@ CSR 방식은 2가지의 문제점이 있다.
 프레임워크
 파일 이름이나 구조 등을 정해진 규칙에 따라 만들고 따름
 
-### 4. Next.js 의 장점
+### 3. Next.js 의 장점
 
 - 파일과 폴더만 만들면 html 페이지를 생성해 줄 수 있다. 
 - 서버 기능을 만들듯이 DB 연결할 수 있고, API를 만들 수 있다. 라이브러리를 사용하면 회원 인증도 쉽다. 
@@ -46,7 +101,7 @@ CSR 방식은 2가지의 문제점이 있다.
 - 서버 데이터 캐싱도 쉽다.
 - 폰트/이미지 최적화도 가능하다
 
-### 5. Next.js 의 단점
+### 4. Next.js 의 단점
 
 - 폴더 기반 라우팅을 사용하기 때문에 예약 파일이 많아지고 파일이 많아지면 관리가 힘들다.
 - 라우팅 방식이 CSR 방식보다 느리다.
@@ -54,7 +109,7 @@ CSR 방식은 2가지의 문제점이 있다.
 - 
 
 
-### 6. React vs Next.js
+### 5. React vs Next.js
 
 #### SSR 및 정적 사이트 생성
 React
